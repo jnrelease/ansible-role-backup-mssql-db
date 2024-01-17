@@ -1,12 +1,12 @@
 ---
 - name: Create backup folder
-    win_file:
-      path: '{{ bak_path }}'
-      state: directory
-    #when: "{{ inventory_hostname == 'jnreward_db' }}"
-    #delegate_to: jnreward_db
-    notify: BackUpFolder Created
-    register: result
+  win_file:
+    path: '{{ bak_path }}'
+    state: directory
+  #when: "{{ inventory_hostname == 'jnreward_db' }}"
+  #delegate_to: jnreward_db
+  notify: BackUpFolder Created
+  register: result
 - name: Generate SQL script from template
   template:
     src: ../templates/backup.sql.j2
