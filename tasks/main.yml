@@ -4,6 +4,7 @@
     db_names_sql: "{{ db_names | map('regex_replace', '^', \"'\") | map('regex_replace', '$', \"'\") | join(', ') }}"
   when: "{{ inventory_hostname == 'sqltest' }}"
   delegate_to: sqltest
+  notify: PrepareDBNames
 
 - name: Create backup folder
   win_file:
@@ -21,6 +22,7 @@
     dest: "{{bak_path}} + 'backup.sql'"
   when: "{{ inventory_hostname == 'sqltest' }}"
   delegate_to: sqltest
+  notify: BackupSQL Created
 
 - name: Execute SQL script on database
   win_shell: |
@@ -28,4 +30,5 @@
   when: "{{ inventory_hostname == 'sqltest' }}"
   delegate_to: sqltest
   register: sql_output
+  notify: BackupSQL Executed
 
