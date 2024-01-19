@@ -1,8 +1,8 @@
 ---
 - name: Prepare database names for SQL script
   set_fact:
-    db_names_sql: "{{ db_names | map('regex_replace', '^', \"'\\\\'\") | map('regex_replace', '$', \"'''\") | join(', ') }}"
-    
+    db_names_sql: "{{ db_names | map('regex_replace', '^', \"'\") | map('regex_replace', '$', \"'\") | join(', ') }}"
+
 - name: Create backup folder
   win_file:
     path: '{{ bak_path }}'
