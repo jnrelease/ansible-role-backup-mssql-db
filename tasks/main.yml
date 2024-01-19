@@ -26,7 +26,7 @@
 
 - name: Execute SQL script on database
   win_shell: |
-    Invoke-Sqlcmd -ServerInstance "localhost"  -InputFile "{{bak_path}} + 'backup.sql' -ConnectionTimeout 100 -QueryTimeout 300" 
+    Invoke-Sqlcmd -ServerInstance "localhost"  -InputFile "{{bak_path}} + 'backup.sql'" -ConnectionTimeout 100 -QueryTimeout 300
   when: "{{ inventory_hostname == 'sqltest' }}"
   delegate_to: sqltest
   register: sql_output
