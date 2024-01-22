@@ -5,7 +5,7 @@ DECLARE @fileName NVARCHAR(512) -- filename for backup
 DECLARE @fileDate NVARCHAR(40) -- used for file name 
 
 -- specify database backup directory
-SET @path = '{{bak_path}}'  --this is on destination server and path must exist
+SET @path = '{{bak_path}}\\'  --this is on destination server and path must exist
  
 -- specify filename format
 SELECT @fileDate = CONVERT(NVARCHAR(20),GETDATE(),112);
